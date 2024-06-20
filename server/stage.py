@@ -3,8 +3,8 @@ import os
 from typing import Dict, List
 
 import guidance
-from langchain.embeddings import OpenAIEmbeddings
-# from langchain.embeddings import HuggingFaceEmbeddings
+# from langchain.embeddings import OpenAIEmbeddings
+from langchain.embeddings import HuggingFaceEmbeddings
 
 from .actor import GenerativeActor
 from .director import GenerativeDirector
@@ -53,7 +53,7 @@ class GenerativeStage:
             new_actor = GenerativeActor(
                 prompter=Prompter(guidance, default_llm=self.default_llm), 
                 name=actor_name,
-                embeddings_model=OpenAIEmbeddings(),
+                embeddings_model=HuggingFaceEmbeddings(), #OpenAIEmbeddings(),
             )
             new_actor.description = actor_info["description"]
             for relation_name, relation in actor_info["relations"].items():
